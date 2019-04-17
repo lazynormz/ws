@@ -6,15 +6,41 @@
     --item-colour-1:#ff652f;
     --item-colour-2: #ffe400;
     --item-colour-3: #14a76c;
-}
-
-body{
-    background-color: var(--body-background-colour);
+    --top-bar-icon-size: 32px;
+    --top-bar-icon-size-small: 18px;
+    --top-bar-center-icon: calc(calc(var(--top-bar-height)/2) - calc(var(--top-bar-icon-size)/2));
+    --top-bar-center-icon-small: calc(calc(var(--top-bar-height)/2) - calc(var(--top-bar-icon-size-small)/1.1));
 }
 
 .bar{
+    z-index: 1;
     position: fixed;
     height: var(--top-bar-height);
     width: 100%;
     background-color: var(--top-bar-colour);
+}
+
+.menu-entry{
+    float:right;
+}
+
+.menu-item{
+    font-size: var(--top-bar-icon-size);
+    margin-top: var(--top-bar-center-icon);
+    margin-right: var(--top-bar-center-icon);
+    color: var(--item-colour-1);
+}
+.menu-item-small{
+    font-size: var(--top-bar-icon-size-small);
+    margin-top: var(--top-bar-center-icon-small);
+    margin-right: var(--top-bar-center-icon-small);
+    color: var(--item-colour-1);
+}
+
+.main{
+    margin-top: var(--top-bar-height);
+    position: absolute;
+    background-color: var(--body-background-colour);
+    height:calc(100% - var(--top-bar-height));
+    width:100%;
 }
