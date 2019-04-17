@@ -1,0 +1,20 @@
+:root{
+    --body-background-colour: #333;
+    --top-bar-height: 42px;
+    --top-bar-colour: #272727;
+    --text-colour:#747474;
+    --item-colour-1:#ff652f;
+    --item-colour-2: #ffe400;
+    --item-colour-3: #14a76c;
+}
+
+body{
+    background-color: var(--body-background-colour);
+}
+
+.bar{
+    position: fixed;
+    height: var(--top-bar-height);
+    width: 100%;
+    background-color: var(--top-bar-colour);
+}
