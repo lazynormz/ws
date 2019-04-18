@@ -18,12 +18,12 @@ const fs = require('fs');
 */
 
 const mariaDB = require('mariadb');
-let config = fs.readFileSync("./config.json");
+let config = require('./config.json')
 
 const pool = mariaDB.createPool({
     host: config.host,
     user: config.user,
-    pasword: config.pasword,
+    password: config.password,
     database: config.database,
     connectionLimit: config.connectionLimit
 });
@@ -40,6 +40,20 @@ const port = 8080;
 
 app.get('/', (req,res)=>{
     res.sendFile("./client/index.html");
+});
+
+app.get('/products', (req,res)=>{
+    pool.getConnection().then(conn=>{
+        let sqlQuery = "SELECT * FROM prods";
+        conn.query(sqlQuery).then(rows=>{
+            delete rows.meta;
+            res.send(rows);
+        }).catch(err=>{
+            console.log(err);
+        });
+    }).catch(err=>{
+        console.log(err);
+    })
 });
 
 app.listen(port, ()=>{
