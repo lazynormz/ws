@@ -12,3 +12,7 @@ function fetchServer(subject){
         products = myJson;
     });
 }
+
+$('.loginBtn').click(function(){
+    $('#loginContainer').toggleClass('active');
+})
