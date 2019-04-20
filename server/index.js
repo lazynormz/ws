@@ -44,7 +44,7 @@ app.get('/', (req,res)=>{
 
 app.get('/products', (req,res)=>{
     pool.getConnection().then(conn=>{
-        let sqlQuery = "SELECT * FROM prods";
+        let sqlQuery = "SELECT * FROM Prods";
         conn.query(sqlQuery).then(rows=>{
             delete rows.meta;
             res.send(rows);
