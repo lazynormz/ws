@@ -21,6 +21,10 @@
     src: url("../fonts/steelfish_rg.ttf");
 }
 
+body{
+    overflow: hidden;
+}
+
 p, h1, h2, h3, h4, h5, h6, form{
     font-family: steelfish;
     color: var(--text-colour);
