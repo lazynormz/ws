@@ -21,7 +21,7 @@
     src: url("../fonts/steelfish_rg.ttf");
 }
 
-body{
+body, html{
     overflow: hidden;
 }
 
@@ -129,4 +129,15 @@ p, h1, h2, h3, h4, h5, h6, form{
     background-color: var(--body-background-colour);
     height:calc(100% - var(--top-bar-height));
     width:100%;
+}
+
+.main p{
+    font-size: 20px;
+}
+
+.main h1{
+    font-size: 42px;
+}
+.main h2{
+    font-size: 30px;
 }
