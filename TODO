@@ -3,10 +3,8 @@
 $ = MacOS	(?@?)
 
 ---BUGS---
- % - pressing <tab> causes the site to shift over an focus <loginForm>
 
 ---TODO---
- * Dynamic product panes
  * Loggin' in
  * Loggin' out
  * Registerin'
@@ -18,3 +16,4 @@ $ = MacOS	(?@?)
  # Generated Node.JS files
  # Created basic website
  # Get products
+ # Dynamic product panes
