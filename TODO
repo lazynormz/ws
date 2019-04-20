@@ -3,4 +3,18 @@
 $ = MacOS	(?@?)
 
 ---BUGS---
- % pressing <tab> causes the site to shift over an focus <loginForm>
+ % - pressing <tab> causes the site to shift over an focus <loginForm>
+
+---TODO---
+ * Dynamic product panes
+ * Loggin' in
+ * Loggin' out
+ * Registerin'
+ * Image host
+ * Fake payment system
+
+---DONE---
+ # Create databases
+ # Generated Node.JS files
+ # Created basic website
+ # Get products
