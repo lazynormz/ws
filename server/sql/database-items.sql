@@ -2,10 +2,9 @@
 INSERT INTO Prods (
     pname,
     price,
-    pdesc,
-    pimg
+    pdesc
 ) VALUES (
     "test_1",
     999,
-    "Test Product",
+    "Test Product"
 );

@@ -22,7 +22,7 @@
 }
 
 body{
-    overflow: hidden;
+    background-color: var(--body-background-colour);
 }
 
 p, h1, h2, h3, h4, h5, h6, form{
@@ -83,9 +83,9 @@ p, h1, h2, h3, h4, h5, h6, form{
 }
 
 #loginContainer{
-    transition: 0.5s ease-in;
+    transition: 0.5s ease-out;
     margin-top: calc(var(--top-bar-height) + 24px);
-    margin-left: 100%;
+    margin-left: calc(100% - calc(var(--form-div-width) + 24px));
     opacity: 0;
 }
 
@@ -97,7 +97,7 @@ p, h1, h2, h3, h4, h5, h6, form{
 }
 
 .loginForm input{
-    width: calc(100% - 6px);
+    width: calc(100% - 12px);
     height:30px;
     text-align: center;
     font-family: steelfish;
@@ -126,7 +126,43 @@ p, h1, h2, h3, h4, h5, h6, form{
 .main{
     margin-top: var(--top-bar-height);
     position: absolute;
-    background-color: var(--body-background-colour);
     height:calc(100% - var(--top-bar-height));
     width:100%;
+}
+
+.main p{
+    font-size: 20px;
+}
+
+.main h1{
+    font-size: 42px;
+}
+.main h2{
+    font-size: 30px;
+}
+
+.product{
+    text-align: center;
+    background-color: var(--item-colour-3);
+    width: 300px;
+    height:450px;
+    float:left;
+    position: relative;
+    display:block;
+    margin-left: 28px;
+    margin-top: 28px; 
+}
+
+.product:hover{
+    cursor: pointer;
+}
+
+.product img{
+    z-index: 0;
+}
+
+.product p,.product h1,.product h2{
+    z-index: 1;
+    margin-top: -450px;
+    color: var(--item-colour-3-shadow);
 }
