@@ -19,6 +19,10 @@ function createProductPanes(){
     for(i = 0; i < products.length; i++){
         let div = document.createElement('div');
         div.className = "product";
+
+        let textDiv = document.createElement('div');
+        textDiv.className = "prodText";
+
         let title = document.createElement('h1');
         title.innerHTML = products[i].pname;
         let price = document.createElement('h2');
@@ -27,9 +31,10 @@ function createProductPanes(){
         image.src = "http://localhost:8080/images/"+products[i].pimg+".png";
 
         div.appendChild(image);
-        div.appendChild(title);
-        div.appendChild(price);
+        textDiv.appendChild(title);
+        textDiv.appendChild(price);
 
+        div.appendChild(textDiv);
         targetDiv.appendChild(div);
     }
 }

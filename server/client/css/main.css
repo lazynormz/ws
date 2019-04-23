@@ -161,8 +161,13 @@ p, h1, h2, h3, h4, h5, h6, form{
     z-index: 0;
 }
 
-.product p,.product h1,.product h2{
-    z-index: 1;
+.prodText{
     margin-top: -450px;
+    z-index: 1;
+    width: 300;
+    height:300;
+}
+
+.prodText p,.prodText h1,.prodText h2{
     color: var(--item-colour-3-shadow);
 }
