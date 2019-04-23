@@ -45,11 +45,15 @@ app.get('/products', (req,res)=>{
         conn.query(sqlQuery).then(rows=>{
             delete rows.meta;   //Can't use this data for anything
             res.send(rows);
+
+            conn.end();
         }).catch(err=>{
             console.log(err);
+            conn.end();
         });
     }).catch(err=>{
         console.log(err);
+        conn.end();
     });
 });
 
@@ -71,7 +75,7 @@ app.get('/images/:imgName',(req,res, next)=>{
     res.sendFile(imageName, options , (err)=>{
         if(err) next(err);
         else console.log('send image...');
-    })
+    });
 })
 
 app.listen(port, ()=>{
