@@ -1,3 +1,5 @@
+const server = "http://localhost:8080/";
+
 let products;
 
 $(document).ready(function(){
@@ -5,11 +7,10 @@ $(document).ready(function(){
 });
 
 function fetchProducts(){
-    let server = "http://localhost:8080/"
-    fetch(server+"products").then(response=>{
-        return response.json();
-    }).then(myJson=>{
-        products = myJson;
+    fetch(server+"products").then(res=>{
+        return res.json();
+    }).then(data=>{
+        products = data;
         createProductPanes();
     });
 }
