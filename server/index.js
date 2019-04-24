@@ -12,10 +12,10 @@
 /*
         Set mariaDB;
 */
-const mariaDB = require('mariadb');
-let config = require('./config.json')
+const mariaDB = require('mariadb');         //So we can connect to the database
+let config = require('./config.json')       //So we can get our settings
 
-const pool = mariaDB.createPool({
+const pool = mariaDB.createPool({           //Creates an idle connection to the server. Defined by config
     host: config.host,
     user: config.user,
     password: config.password,
@@ -26,23 +26,24 @@ const pool = mariaDB.createPool({
  /*
         Set express;
  */
-const express = require('express');
-const app = express();
-const bodyparser = require('body-parser');
+const express = require('express');         //So we can use express functions
+const app = express();                      //Activates the express functions
+const bodyparser = require('body-parser');  //So we can parse info from the POST method
 
-app.use(express.static("client"));
-app.use(express.static("images"));
-app.use(express.json());
+app.use(express.cookieParser());            //So we can set cookies for our users - auto login and restricted page
+app.use(express.static("client"));          //So we can send .html files
+app.use(express.static("images"));          //So we can send images from ./images
+app.use(express.json());                    //So we can send error messages and error codes
 
-app.use(bodyparser.json());
+app.use(bodyparser.json());                 //So we can parse info from the POST method
 
-const port = 8080;
+const port = 8080;                          //The port the server is hosted on
 
-app.get('/', (req,res)=>{
+app.get('/', (req,res)=>{                   //Send homepage when site is entered
     res.sendFile("./client/index.html");
 });
 
-app.get('/products', (req,res)=>{
+app.get('/products', (req,res)=>{           //Send the data for all the products
     console.log('There was a request for %Prods%...');
     pool.getConnection().then(conn=>{
         let sqlQuery = "SELECT * FROM Prods";
@@ -61,7 +62,7 @@ app.get('/products', (req,res)=>{
     });
 });
 
-app.get('/images/:imgName',(req,res, next)=>{
+app.get('/images/:imgName',(req,res, next)=>{   //Send the requested image
     console.log('There was a request for an image...');
     let imageName= req.params.imgName;
 
@@ -82,11 +83,48 @@ app.get('/images/:imgName',(req,res, next)=>{
     });
 })
 
-app.post('/profile/signup', (req,res,next)=>{
-    console.log('someone just signed up...'); 
+app.post('/profile/login', (req,res,next)=>{        //Login to our user
+    console.log('Someone\'s trying to login...');
     let mainRes = res;
+    let sqlQuery = `SELECT * FROM Users WHERE umail="${req.body.email}"`;
+
     pool.getConnection().then(conn=>{
-        let sqlQuery = `INSERT INTO Users (uname, umail, upass) VALUES ("${req.body.username}","${req.body.email}","${req.body.password}")`;
+        conn.query(`SELECT EXISTS(SELECT * FROM Users WHERE umail="${req.body.email}")`).then(res=>{
+            delete res.meta;
+            let val = Object.values(res[0]);
+            if(val[0] != 1){
+                mainRes.json({
+                    message: "NO_USR",
+                    errCode:909
+                });
+                return conn.end();
+            }
+            conn.query(sqlQuery).then(res=>{
+                delete res.meta;
+                if(req.body.password === res[0].upass) console.log("pass matched")
+            }).catch(err=>{
+                console.log(err);
+                conn.end();
+            })
+        })
+    }).catch(err=>{
+        console.log(err);
+    })
+})
+
+app.post('/profile/signup', (req,res,next)=>{       //Register a new user
+    console.log('someone just signed up...'); 
+    let mainRes = res;  //Destination of our response. Will get overridden as we get a response from MariaDB database
+    let sqlQuery = `INSERT INTO Users (uname, umail, upass) VALUES ("${req.body.username}","${req.body.email}","${req.body.password}")`;
+
+    if(req.body.email === undefined || req.body.username === undefined || req.body.password === undefined){
+        return mainRes.json({
+            message:"MIS_FIELD",
+            errCode: 100
+        });
+    }
+
+    pool.getConnection().then(conn=>{
         conn.query(`SELECT EXISTS(SELECT * FROM Users WHERE uname="${req.body.username}")`).then(res=>{
             delete res.meta;
             let val = Object.values(res[0]);
@@ -113,7 +151,7 @@ app.post('/profile/signup', (req,res,next)=>{
                         }).catch(err=>{
                             console.log(err);
                             conn.end();
-                        })
+                        });
                     }
                 }).catch(err=>{
                     console.log(err);
@@ -131,6 +169,6 @@ app.post('/profile/signup', (req,res,next)=>{
     });
 });
 
-app.listen(port, ()=>{
+app.listen(port, ()=>{                      //Start the express service and listen for trafic on the port
     console.log(`Listening on: http://localhost:${port}`);
 });
