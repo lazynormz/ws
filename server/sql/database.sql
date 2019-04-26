@@ -38,18 +38,9 @@ CREATE TABLE IF NOT EXISTS Orders (
     PRIMARY KEY (id)
 );
 
-
-
 CREATE TABLE IF NOT EXISTS ShipmentLists (
     id INT NOT NULL AUTO_INCREMENT,
     orderId INT NOT NULL,
     productId INT NOT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS LoginSession (
-    id INT NOT NULL AUTO_INCREMENT,
-    uname VARCHAR(128) NOT NULL,
-    timeCreated DATETIME NOT NULL,
     PRIMARY KEY (id)
 );
