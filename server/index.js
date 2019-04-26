@@ -7,6 +7,7 @@
  * @see Node.JS
  * @see mariadb
  * @see express
+ * @see body-parser
  */
 
 /*
@@ -30,7 +31,7 @@ const express = require('express');         //So we can use express functions
 const app = express();                      //Activates the express functions
 const bodyparser = require('body-parser');  //So we can parse info from the POST method
 
-app.use(express.cookieParser());            //So we can set cookies for our users - auto login and restricted page
+//app.use(express.cookieParser());            //So we can set cookies for our users - auto login and restricted page
 app.use(express.static("client"));          //So we can send .html files
 app.use(express.static("images"));          //So we can send images from ./images
 app.use(express.json());                    //So we can send error messages and error codes
@@ -44,7 +45,7 @@ app.get('/', (req,res)=>{                   //Send homepage when site is entered
 });
 
 app.get('/products', (req,res)=>{           //Send the data for all the products
-    console.log('There was a request for %Prods%...');
+    console.log('There was a request for Prods...');
     pool.getConnection().then(conn=>{
         let sqlQuery = "SELECT * FROM Prods";
         conn.query(sqlQuery).then(rows=>{
@@ -83,6 +84,10 @@ app.get('/images/:imgName',(req,res, next)=>{   //Send the requested image
     });
 })
 
+app.post('/profile/auto_login', (req,res,next)=>{
+    let mainRes = res;
+});
+
 app.post('/profile/login', (req,res,next)=>{        //Login to our user
     console.log('Someone\'s trying to login...');
     let mainRes = res;
@@ -101,7 +106,21 @@ app.post('/profile/login', (req,res,next)=>{        //Login to our user
             }
             conn.query(sqlQuery).then(res=>{
                 delete res.meta;
-                if(req.body.password === res[0].upass) console.log("pass matched")
+                if(req.body.password === res[0].upass){
+                    console.log("pass matched");
+                    mainRes.json({
+                        message:"LGD_IN",
+                        userName:res[0].uname,
+                        userId:res[0].id
+                    });
+                    return conn.end();
+                }else{
+                    mainRes.json({
+                        message: "WRONG_PWD",
+                        errCode: 910
+                    });
+                    return conn.end();
+                }
             }).catch(err=>{
                 console.log(err);
                 conn.end();
@@ -169,6 +188,7 @@ app.post('/profile/signup', (req,res,next)=>{       //Register a new user
     });
 });
 
-app.listen(port, ()=>{                      //Start the express service and listen for trafic on the port
+//Start the express service and listen for trafic on the defined port
+app.listen(port, ()=>{
     console.log(`Listening on: http://localhost:${port}`);
 });

@@ -46,3 +46,10 @@ CREATE TABLE IF NOT EXISTS ShipmentLists (
     productId INT NOT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE IF NOT EXISTS LoginSession (
+    id INT NOT NULL AUTO_INCREMENT,
+    uname VARCHAR(128) NOT NULL,
+    timeCreated DATETIME NOT NULL,
+    PRIMARY KEY (id)
+);

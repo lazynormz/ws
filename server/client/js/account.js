@@ -1,4 +1,10 @@
-function signin(em,pw){
+function signin(){
+    let em = document.getElementById('loginformEmail').value;
+    let pw = document.getElementById('loginformPassword').value;
+
+    if(em === '') return alert('Email cannot be empty')
+    if(pw === '') return alert('Password cannot be empty')
+
     let hpass = sha256(pw);
 
     let userObj = {
@@ -14,12 +20,20 @@ function signin(em,pw){
             'Content-Type': 'application/json'
         }
     }).then(res=>{
-        return res.json();
+        if (res.ok) {
+            return res.json();
+        }else{
+            return Promise.reject('something went wrong!');
+        }
     }).then(data=>{
-        console.log(data)
+        console.log(data);
+        saveData(data.userId, data.userName, true);
+        return;
     }).catch(err=>{
         console.log(err);
-    })
+        return;
+    });
+    return;
 }
 
 function signup(un, pw, em){
@@ -39,11 +53,43 @@ function signup(un, pw, em){
             'Content-Type': 'application/json'
         }
     }).then(res=>{
-        return res.json();
+        if (res.ok) {
+            return res.json()
+        }else{
+            return Promise.reject('something went wrong!')
+        }
     }).then(data=>{
         console.log(data)
+        return;
     }).catch(err=>{
         console.log(err);
-    })
+        return;
+    });
+    return;
+}
 
+function saveData(uid,un,li){
+    localStorage.setItem('uid',uid);
+    localStorage.setItem('un',un);
+    localStorage.setItem('li',li);
+    window.location.href=server+"protected_page.html";
+}
+
+function deleteData() {
+    localStorage.removeItem('uid');
+    localStorage.removeItem('un');
+    localStorage.setItem('li',false);
+}
+
+function getLoginData(){
+    return {
+        uid:localStorage.getItem('uid'),
+        un:localStorage.getItem('un'),
+        li:localStorage.getItem('li')
+    };
+}
+
+function logout(){
+    deleteData();
+    window.location.href=server;
 }

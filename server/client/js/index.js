@@ -43,3 +43,7 @@ function createProductPanes(){
 $('.loginBtn').click(function(){
     $('#loginContainer').toggleClass('active');
 });
+
+$('.logoutBtn').click(function(){
+    logout();
+})
