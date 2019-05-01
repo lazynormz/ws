@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+        </title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
+    </head>
+    <body>
+        <div id="loginContainer" class="loginFormDecor">
+            <div class="loginForm">
+                <form>
+                    <p>Email:</p>
+                    <input type="text" name="email" id="loginformEmail" placeholder="yourmail@here.domain">
+                    <p>Password:</p>
+                    <input type="password" name="password" id="loginformPassword" placeholder="yoursecretpasswordhere">
+                    <button type="button" name="button" onclick="signin()">LOGIN</button>
+                </form>
+            </div>
+        </div>
+        <nav class="bar">
+            <ul class="top-menu">
+                <li>
+                    <span class="fa-stack menu-entry logoutBtn">
+                        <i class="fa fa-sign-out fa-stack-1x menu-item-small"></i>
+                        <i class="fa fa-circle-thin fa-stack-1x menu-item"></i>
+                    </span>
+                </li>
+            </ul>
+        </nav>
+        <div id="main" class="main"> 
+        </div>
+    </body>
+</html>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/product_page.js"></script>
+<script src="./js/account.js"></script>
+<script src="./js/pp.js"></script>

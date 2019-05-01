@@ -44,6 +44,43 @@ app.get('/', (req,res)=>{                   //Send homepage when site is entered
     res.sendFile("./client/index.html");
 });
 
+app.get('/product', (req,res,next)=>{
+    let id = req.body.id;
+    let options = {
+        root: __dirname + '/client/',
+        dotfiles: 'allow',
+        headers: {
+            'x-timestamp': Date.now(),
+            'x-sent': true
+        }
+    };
+
+    res.sendFile("./productPage.html", options, err=>{
+        if(err){
+            next(err);
+        }else{
+            console.log('send...')
+        }
+    });
+});
+
+app.get('/product/id/:id',(req,res,next)=>{
+    console.log('someine')
+    let requestedId = req.params.id;
+
+    if(requestedId == undefined || requestedId === null) return
+
+    let sqlQuery = `SELECT * FROM Prods WHERE id="${requestedId}"`;
+
+    pool.getConnection().then(conn=>{
+        conn.query(sqlQuery).then(rows=>{
+            delete rows.meta;
+            res.send(rows[0]);
+            console.log("Send prod. information...")
+        })
+    })
+});
+
 app.get('/products', (req,res)=>{           //Send the data for all the products
     console.log('There was a request for Prods...');
     pool.getConnection().then(conn=>{
@@ -51,7 +88,6 @@ app.get('/products', (req,res)=>{           //Send the data for all the products
         conn.query(sqlQuery).then(rows=>{
             delete rows.meta;   //Can't use this data for anything
             res.send(rows);
-
             conn.end();
         }).catch(err=>{
             console.log(err);
@@ -83,10 +119,6 @@ app.get('/images/:imgName',(req,res, next)=>{   //Send the requested image
         else console.log('send image...');
     });
 })
-
-app.post('/profile/auto_login', (req,res,next)=>{
-    let mainRes = res;
-});
 
 app.post('/profile/login', (req,res,next)=>{        //Login to our user
     console.log('Someone\'s trying to login...');

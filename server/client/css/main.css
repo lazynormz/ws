@@ -171,3 +171,19 @@ p, h1, h2, h3, h4, h5, h6, form{
 .prodText p,.prodText h1,.prodText h2{
     color: var(--item-colour-3-shadow);
 }
+
+.descDiv{
+    text-align: center;
+    background-color: var(--item-colour-3);
+    width: 300px;
+    height:450px;
+    float:left;
+    position: relative;
+    display:block;
+    margin-left: 28px;
+    margin-top: 28px; 
+}
+
+.descDiv p,.descDiv h1,.descDiv h2{
+    color: var(--top-bar-colour);
+}

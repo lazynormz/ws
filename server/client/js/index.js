@@ -18,8 +18,12 @@ function fetchProducts(){
 function createProductPanes(){
     let targetDiv = document.getElementById('main');
     for(i = 0; i < products.length; i++){
+        let id = products[i].id;
         let div = document.createElement('div');
         div.className = "product";
+        div.onclick = function() {
+            window.location.href=server+"product?id="+id;
+        }
 
         let textDiv = document.createElement('div');
         textDiv.className = "prodText";
