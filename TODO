@@ -5,8 +5,6 @@ $ = MacOS	    (?@?)
 ---BUGS---
 
 ---TODO---
- * Loggin' in
- * Loggin' out
  * Fake payment system
 
 ---DONE---
@@ -17,3 +15,5 @@ $ = MacOS	    (?@?)
  # Dynamic product panes
  # Registerin'
  # Image host
+ # Loggin' in
+ # Loggin' out
