@@ -72,7 +72,7 @@ function saveData(uid,un,li){
     localStorage.setItem('uid',uid);
     localStorage.setItem('un',un);
     localStorage.setItem('li',li);
-    window.location.href=server+"protected_page.html";
+    window.location.href=server;
 }
 
 function deleteData() {
