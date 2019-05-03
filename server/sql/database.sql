@@ -22,23 +22,7 @@ CREATE TABLE IF NOT EXISTS Prods (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS Addr (
-    id INT NOT NULL AUTO_INCREMENT,
-    road TEXT,
-    houseNumber TEXT,
-    zipcode TEXT,
-    PRIMARY KEY (id)
-);
-
 CREATE TABLE IF NOT EXISTS Orders (
-    id INT NOT NULL AUTO_INCREMENT,
-    userId INT NOT NULL,
-    createdAt DATETIME NOT NULL,
-    orderStatus TEXT NOT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS ShipmentLists (
     id INT NOT NULL AUTO_INCREMENT,
     orderId INT NOT NULL,
     productId INT NOT NULL,

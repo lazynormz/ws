@@ -3,5 +3,5 @@
     "user":"mike",
     "password":"mike3453",
     "database":"webshop",
-    "connectionLimit":5
+    "connectionLimit":100
 }

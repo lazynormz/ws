@@ -59,6 +59,18 @@ p, h1, h2, h3, h4, h5, h6, form{
     cursor: pointer;
 }
 
+.home{
+    float:left;
+    font-size: var(--top-bar-icon-size);
+    margin-top: var(--top-bar-center-icon);
+    margin-left: var(--top-bar-center-icon);
+    color: var(--item-colour-1);
+}
+
+.home:hover{
+    cursor: pointer;
+}
+
 .loginFormDecor{
     height: 225px;
     width: 200px;
@@ -176,7 +188,7 @@ p, h1, h2, h3, h4, h5, h6, form{
     text-align: center;
     background-color: var(--item-colour-3);
     width: 300px;
-    height:450px;
+    height: 450px;
     float:left;
     position: relative;
     display:block;

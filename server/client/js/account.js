@@ -68,6 +68,38 @@ function signup(un, pw, em){
     return;
 }
 
+function addOrder(uid, pid){
+
+    let orderObj = {
+        uid:parseInt(uid),
+        pid:pid
+    };
+
+    console.log(orderObj);
+
+    fetch(server + "profile/addOrder",{
+        credentials: 'same-origin', // 'include', default: 'omit'
+        method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
+        body: JSON.stringify(orderObj), // Coordinate the body type with 'Content-Type'
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res=>{
+        if (res.ok) {
+            return res.json()
+        }else{
+            return Promise.reject('something went wrong!')
+        }
+    }).then(data=>{
+        console.log(data)
+        return;
+    }).catch(err=>{
+        console.log(err);
+        return;
+    });
+    return;
+}
+
 function saveData(uid,un,li){
     localStorage.setItem('uid',uid);
     localStorage.setItem('un',un);

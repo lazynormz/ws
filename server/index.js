@@ -216,8 +216,33 @@ app.post('/profile/signup', (req,res,next)=>{       //Register a new user
         });
     }).catch(err=>{
         console.log(err);
-        conn.end();
     });
+});
+
+app.post('/profile/addOrder', (req,res,next)=>{
+    let mainRes = res;
+
+    if(req.body.uid === null || req.body.uid === undefined || req.body.pid === null || req.body.pid === undefined){
+        mainRes.json({
+            message:"MIS_FIELD",
+            errCode:100
+        });
+    }
+
+    let sqlQuery = `INSERT INTO Orders (userId, productId) VALUES (${req.body.uid}, ${req.body.pid})`;
+
+    pool.getConnection().then(conn=>{
+        conn.query(sqlQuery).then(res=>{
+            console.log(res);
+            return conn.end();
+        }).catch(err=>{
+            console.log(err);
+            conn.end();
+        })
+    }).catch(err=>{
+        console.log(err);
+    })
+
 });
 
 //Start the express service and listen for trafic on the defined port

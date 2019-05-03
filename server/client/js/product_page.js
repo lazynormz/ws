@@ -52,6 +52,27 @@ function createProductPane(){
 
     descDiv.appendChild(descText);
 
+    //'buyin' thingy
+    let bButton = document.createElement('button');
+    bButton.innerHTML = "Buy";
+    bButton.setAttribute("id", "bBtn");
+    descDiv.appendChild(bButton);
+
     //Append the div
     targetDiv.appendChild(descDiv);
+
+    //Now that the btn is there, make it clickable
+    addBtnListener();
 }
+
+function addBtnListener(){
+    $('#bBtn').click(function(){
+        if(getLoginData().li){
+            addOrder(getLoginData().uid, parseInt(urlParams.get('id')));
+        }
+    }); 
+}
+
+$(".home").click(function(){
+    window.location.href=server;
+})
