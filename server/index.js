@@ -112,7 +112,7 @@ app.get('/images/:imgName',(req,res, next)=>{   //Send the requested image
         }
     };
 
-    if(imageName === null) imageName = "default.png";
+    if(imageName === null || imageName === "null")  imageName = "default.png";
 
     res.sendFile(imageName, options , (err)=>{
         if(err) next(err);
@@ -197,7 +197,7 @@ app.post('/profile/signup', (req,res,next)=>{       //Register a new user
                         return conn.end();
                     }else{
                         return conn.query(sqlQuery).then(res=>{
-                            console.log(res);
+                            mainRes.send(res);
                             conn.end();
                         }).catch(err=>{
                             console.log(err);

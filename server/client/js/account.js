@@ -36,7 +36,15 @@ function signin(){
     return;
 }
 
-function signup(un, pw, em){
+function signup(){
+    let un = document.getElementById('registerformUsername').value;
+    let em = document.getElementById('registerformEmail').value;
+    let pw = document.getElementById('registerformPassword').value;
+
+    if(un === '') return alert('Username cannot be empty!');
+    if(em === '') return alert('Email cannot be empty!');
+    if(pw === '') return alert('Password cannot be empty!');
+
     let hpass = sha256(pw);
 
     let userObj = {
@@ -60,6 +68,7 @@ function signup(un, pw, em){
         }
     }).then(data=>{
         console.log(data)
+        alert('Register successfull... Please log in now to continue shoppin\'');
         return;
     }).catch(err=>{
         console.log(err);

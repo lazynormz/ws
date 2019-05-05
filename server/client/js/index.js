@@ -45,7 +45,13 @@ function createProductPanes(){
 }
 
 $('.loginBtn').click(function(){
+    if($('#registerContainer').hasClass('active')) $('registerContainer').toggleClass('active')
     $('#loginContainer').toggleClass('active');
+});
+
+$('.registerBtn').click(function(){
+    if($('#loginContainer').hasClass('active')) $('loginContainer').toggleClass('active')
+    $('#registerContainer').toggleClass('active');
 });
 
 $('.logoutBtn').click(function(){

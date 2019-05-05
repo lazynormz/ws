@@ -67,6 +67,7 @@ function createProductPane(){
 
 function addBtnListener(){
     $('#bBtn').click(function(){
+        if(getLoginData().uid == undefined) return alert('Something went wrong. Please login again')
         if(getLoginData().li){
             addOrder(getLoginData().uid, parseInt(urlParams.get('id')));
         }

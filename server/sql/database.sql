@@ -18,13 +18,13 @@ CREATE TABLE IF NOT EXISTS Prods (
     pname TEXT NOT NULL,
     price INT NOT NULL,
     pdesc TEXT,
-    pimg TEXT,
+    pimg VARCHAR(128) DEFAULT "default",
     PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS Orders (
     id INT NOT NULL AUTO_INCREMENT,
-    orderId INT NOT NULL,
+    userId INT NOT NULL,
     productId INT NOT NULL,
     PRIMARY KEY (id)
 );

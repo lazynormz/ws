@@ -5,7 +5,7 @@
         </title>
         <link rel="stylesheet" type="text/css" href="css/reset.css" />
         <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
-        <link rel="stylesheet" type="text/css" href="css/main.css" />
+        <link rel="stylesheet" type="text/css" href="css/main.css" />   
     </head>
     <body>
         <div id="loginContainer" class="loginFormDecor">
@@ -19,11 +19,28 @@
                 </form>
             </div>
         </div>
+        <div id="registerContainer" class="registerFormDecor">
+                <div class="regsiterForm">
+                    <form>
+                        <p>Username:</p>
+                        <input type="text" name="username" id="registerformUsername" placeholder="username">
+                        <p>Email:</p>
+                        <input type="text" name="email" id="registerformEmail" placeholder="yourmail@here.domain">
+                        <p>Password:</p>
+                        <input type="password" name="password" id="registerformPassword" placeholder="yoursecretpasswordhere">
+                        <button type="button" name="button" onclick="signup()">REGISTER</button>
+                    </form>
+                </div>
+        </div>
         <nav class="bar">
             <ul class="top-menu">
                 <li>
                     <span class="fa-stack menu-entry loginBtn">
                         <i class="fa fa-sign-in fa-stack-1x menu-item-small"></i>
+                        <i class="fa fa-circle-thin fa-stack-1x menu-item"></i>
+                    </span>
+                    <span class="fa-stack menu-entry registerBtn">
+                        <i class="fa fa-user-plus fa-stack-1x menu-item-small"></i>
                         <i class="fa fa-circle-thin fa-stack-1x menu-item"></i>
                     </span>
                 </li>
