@@ -6,10 +6,7 @@ CREATE TABLE IF NOT EXISTS Users (
     id INT NOT NULL AUTO_INCREMENT,
     uname VARCHAR(128) NOT NULL,
     umail VARCHAR(128) NOT NULL,
-    upass VARCHAR(256) NOT NULL,
-    phoneNumber VARCHAR(64),
-    addrId INT,
-    uimg TEXT,
+    upass VARCHAR(64) NOT NULL,
     PRIMARY KEY (id)
 );
 
