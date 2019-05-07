@@ -3,7 +3,7 @@ requirements:
     *   Node v10.15.3
 
 How to use:
-    *   Run executable for your system from ./executables
+    *   Run executable for your system from the root folder (server)
     |   OR
     *   open cmd/terminal in ./server and run following commands:
         -   npm i -y express mariadb js-sha256 body-parser
